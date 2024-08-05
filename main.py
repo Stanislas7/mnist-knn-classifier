@@ -16,6 +16,30 @@ def evaluate_accuracy(train_images, train_labels, test_images, test_labels, k):
     accuracy = correct / total
     return accuracy, predictions
 
+def create_confusion_matrix(true_labels, predicted_labels, num_classes=10):
+    # Initialize the confusion matrix with zeros
+    matrix = [[0 for _ in range(num_classes)] for _ in range(num_classes)]
+
+    # Fill the confusion matrix
+    for true, pred in zip(true_labels, predicted_labels):
+        matrix[true][pred] += 1
+
+    return matrix
+
+def print_confusion_matrix(matrix):
+    # Print header
+    print("   ", end="")
+    for i in range(len(matrix)):
+        print(f"{i:4}", end="")
+    print("\n" + "-" * (5 * len(matrix) + 3))
+
+    # Print rows
+    for i, row in enumerate(matrix):
+        print(f"{i:2}|", end="")
+        for cell in row:
+            print(f"{cell:4}", end="")
+        print()
+
 if __name__ == "__main__":
     print("Loading training data...")
     train_images = read_images(config.TRAIN_IMAGES_PATH)
@@ -34,3 +58,7 @@ if __name__ == "__main__":
     print(f"\nPredictions for the first {config.NUM_PREDICTIONS_TO_SHOW} test images:")
     for i in range(min(config.NUM_PREDICTIONS_TO_SHOW, len(predictions))):
         print(f"Image {i+1}: Predicted {predictions[i]}, Actual {test_labels[i]}")
+
+    conf_matrix = create_confusion_matrix(test_labels[:config.N_TEST], predictions)
+    print("\nConfusion Matrix:")
+    print_confusion_matrix(conf_matrix)

@@ -17,6 +17,7 @@ def read_images(filename, num_images_to_read=None):
                 pixel = int.from_bytes(f.read(1), 'big')  # Read one byte (one pixel)
                 image.append(pixel)
             images.append(image)
+
     return images
 
 def read_labels(filename, num_labels_to_read=None):
@@ -32,6 +33,7 @@ def read_labels(filename, num_labels_to_read=None):
         for _ in range(num_labels):
             label = int.from_bytes(f.read(1), 'big')  # Read one byte (one label)
             labels.append(label)
+
     return labels
 
 def read_test_images(filename, num_images_to_read=None):
