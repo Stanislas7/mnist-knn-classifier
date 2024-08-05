@@ -12,17 +12,12 @@ LeCun, Y., Cortes, C., & Burges, C. (2010). MNIST handwritten digit database.
 
 ## Setup and Usage
 
-1. Install requirements:
-```bash
-pip install -r requirements.txt
-```
-
-2. Run the script:
+1. Run the script:
 ```bash
 python main.py
 ```
 
-Note: On Linux or macOS, you might need to use `pip3` and `python3` instead.
+Note: On Linux or macOS, you might need to use `python3` instead.
 
 ## Project Status
 
